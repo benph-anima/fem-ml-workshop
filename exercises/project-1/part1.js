@@ -1,19 +1,19 @@
 import "@tensorflow/tfjs";
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
-import {handleFilePicker, showResult} from "./utils.js"
+
+import { showResult, handleFilePicker } from "./utils";
 
 let model;
 
 const init = async () => {
-    model = await cocoSsd.load();
+  model = await cocoSsd.load();
 
-    handleFilePicker(predict);
+  handleFilePicker(predict);
 };
 
-const predict = async (img) => {
-    const predictions = await model.detect(img);
-    console.log(predictions);
-    showResult(predictions);
+const predict = async (imgElement) => {
+  const predictions = await model.detect(imgElement);
+  showResult(predictions);
 };
 
 init();
